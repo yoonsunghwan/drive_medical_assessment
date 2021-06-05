@@ -5,6 +5,17 @@ import streamlit.components.v1 as components
 
 
 st.set_page_config(layout="wide")
+st.markdown("""
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+""",unsafe_allow_html=True)
+st.markdown("<img src='https://www.drivemedical.com/medias/sys_master/images/images/hcf/h83/8796299984926/logo.png' alt='drive medical' class='center'> ", unsafe_allow_html=True)
 st.markdown("<h1 style='text-align: center; color: black;'>Drive DeVilbiss Product Orders</h1>", unsafe_allow_html=True)
 HtmlFile = open("Drive_Medical_data_assessment.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read()
@@ -13,9 +24,11 @@ with st.beta_expander("Click this to see the answers to the assessment"):
 
 st.markdown("<p1 style='text-align: center; color: black;'>This is an interactive dashboard, feel free to hover around the graphs and play with the data. The data comes from Drive DeVilbiss Healthcare's PO Numbers data assessment.</p1>", unsafe_allow_html=True)
 
+st.subheader(f"The excel file contained {df.shape[0]:,} total records and {len(df['PO Number'].unique()):,} unique PO numbers.")
+
 col1, col2 = st.beta_columns(2)
 with col1.beta_container():
-    col1.subheader("Plant BP02, has the greatest total value")
+    col1.subheader("Plant BP02, has the greatest total value at 47.58M ($)")
     col1.plotly_chart(fig)
 with col2.beta_container():
     col2.subheader("Around 21.8% of PO Orders comes from A")
